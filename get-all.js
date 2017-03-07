@@ -12,7 +12,7 @@ function getAll (get, options, cb) {
 
   var pageSize = options.pageSize || 10
 
-  get({ page: 1, pageSize: pageSize }, function (err, firstResult) {
+  get(1, pageSize, function (err, firstResult) {
     if (err) return cb(err)
     if (options.onPage) options.onPage(firstResult)
 
