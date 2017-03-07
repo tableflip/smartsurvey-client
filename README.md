@@ -44,13 +44,14 @@ Result {
     pagination: { page: 1, pageSize: 25, returned: 25, total: 31 }
     release: '1.1.0.29',
     server: 'Web1'
-  }
+  },
+  response: {...}
 }
 ```
 
 ## Conventions
 
-Request params are named as per the params documented in the API, however they are renamed from `snake_case` to `camelCase`.
+Request params are named as per the params documented in the SmartSurvey API docs, however they are renamed from `snake_case` to `camelCase`.
 
 All requests take `apiToken` and `apiTokenSecret` params, but they can be optionally passed to the constructor where they will automatically be added to each request.
 
