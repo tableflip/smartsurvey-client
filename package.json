@@ -1,0 +1,25 @@
+{
+  "name": "smartsurvey-client",
+  "version": "0.0.0",
+  "description": "SmartSurvey API client",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "keywords": [
+    "smartsurvey",
+    "smart",
+    "survey",
+    "api",
+    "client"
+  ],
+  "author": "Alan Shaw",
+  "license": "ISC",
+  "dependencies": {
+    "async-each": "^1.0.1",
+    "request": "^2.80.0"
+  },
+  "devDependencies": {
+    "standard": "^9.0.0"
+  }
+}
