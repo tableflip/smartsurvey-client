@@ -7,18 +7,19 @@ function getAll (get, options, cb) {
   }
 
   options = options || {}
+  var collect = !!cb
   cb = cb || function () {}
 
   var pageSize = options.pageSize || 10
 
-  get({ page: 1, pageSize: pageSize }, function (err, result) {
+  get({ page: 1, pageSize: pageSize }, function (err, firstResult) {
     if (err) return cb(err)
-    if (options.onPage) options.onPage(result)
+    if (options.onPage) options.onPage(firstResult)
 
-    var totalPages = Math.ceil(result.meta.pagination.total / pageSize)
+    var totalPages = Math.ceil(firstResult.meta.pagination.total / pageSize)
 
     if (totalPages < 2) {
-      return cb(null, result.data)
+      return cb(null, firstResult.data)
     }
 
     var pages = []
@@ -28,12 +29,12 @@ function getAll (get, options, cb) {
       get(page, pageSize, function (err, result) {
         if (err) return cb(err)
         if (options.onPage) options.onPage(result)
-        cb(null, result)
+        cb(null, collect ? result : null)
       })
     }, function (err, results) {
-      if (err) return cb(err)
+      if (err || !collect) return cb(err)
 
-      cb(null, results.reduce(function (result, pageResult) {
+      cb(null, [firstResult].concat(results).reduce(function (result, pageResult) {
         result.data = result.data.concat(pageResult.data)
         return result
       }, { data: [] }))
