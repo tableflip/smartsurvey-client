@@ -19,7 +19,7 @@ function getAll (get, options, cb) {
     var totalPages = Math.ceil(firstResult.meta.pagination.total / pageSize)
 
     if (totalPages < 2) {
-      return cb(null, firstResult.data)
+      return cb(null, firstResult)
     }
 
     var pages = []
