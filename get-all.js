@@ -25,7 +25,7 @@ function getAll (get, options, cb) {
     for (var i = 2; i < totalPages + 1; i++) pages.push(i)
 
     each(pages, function (page, cb) {
-      get({ page: page, pageSize: pageSize }, function (err, result) {
+      get(page, pageSize, function (err, result) {
         if (err) return cb(err)
         if (options.onPage) options.onPage(result)
         cb(null, result)
