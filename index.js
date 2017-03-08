@@ -66,7 +66,7 @@ SmartSurveyClient.prototype.getSurveys = function (options, cb) {
 
   return Request.get({
     method: 'GET',
-    url: this.baseUrl() + '/surveys',
+    url: this._baseUrl() + '/surveys',
     qs: qs,
     json: true
   }, function (err, res, body) {
@@ -102,7 +102,7 @@ SmartSurveyClient.prototype.getSurvey = function (surveyId, options, cb) {
 
   return Request.get({
     method: 'GET',
-    url: this.baseUrl() + '/surveys/' + encodeURIComponent(surveyId) + (options.detailed ? '/detailed' : ''),
+    url: this._baseUrl() + '/surveys/' + encodeURIComponent(surveyId) + (options.detailed ? '/detailed' : ''),
     qs: qs,
     json: true
   }, function (err, res, body) {
@@ -158,7 +158,7 @@ SmartSurveyClient.prototype.getResponses = function (surveyId, options, cb) {
 
   return Request.get({
     method: 'GET',
-    url: this.baseUrl() + '/surveys/' + encodeURIComponent(surveyId) + '/responses',
+    url: this._baseUrl() + '/surveys/' + encodeURIComponent(surveyId) + '/responses',
     qs: qs,
     json: true
   }, function (err, res, body) {
@@ -194,7 +194,7 @@ SmartSurveyClient.prototype.getResponse = function (surveyId, responseId, option
 
   return Request.get({
     method: 'GET',
-    url: this.baseUrl() + '/surveys/' + encodeURIComponent(surveyId) + '/responses/' + encodeURIComponent(responseId),
+    url: this._baseUrl() + '/surveys/' + encodeURIComponent(surveyId) + '/responses/' + encodeURIComponent(responseId),
     qs: qs,
     json: true
   }, function (err, res, body) {
