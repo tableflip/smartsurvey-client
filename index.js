@@ -9,6 +9,7 @@ var undef
 * @param {Object} [options]
 * @param {string} [options.apiToken] API Token
 * @param {string} [options.apiTokenSecret] API Token Secret
+* @param {string} [options.baseUrl] API base URL (default https://api.smartsurvey.io/v1)
 */
 function SmartSurveyClient (options) {
   if (this instanceof SmartSurveyClient === false) {
@@ -62,7 +63,11 @@ SmartSurveyClient.prototype.getSurveys = function (options, cb) {
   if (options.pageSize !== undef) qs.page_size = options.pageSize
   if (options.sortBy !== undef) qs.sort_by = options.sortBy
 
-  qs = this._authenticateQueryString(qs, options)
+  try {
+    qs = this._authenticateQueryString(qs, options)
+  } catch (err) {
+    return setTimeout(function () { cb(err) })
+  }
 
   return Request.get({
     method: 'GET',
@@ -98,7 +103,11 @@ SmartSurveyClient.prototype.getSurvey = function (surveyId, options, cb) {
   options = options || {}
   var qs = {}
 
-  qs = this._authenticateQueryString(qs, options)
+  try {
+    qs = this._authenticateQueryString(qs, options)
+  } catch (err) {
+    return setTimeout(function () { cb(err) })
+  }
 
   return Request.get({
     method: 'GET',
@@ -154,7 +163,11 @@ SmartSurveyClient.prototype.getResponses = function (surveyId, options, cb) {
   if (options.pageSize !== undef) qs.page_size = options.pageSize
   if (options.sortBy !== undef) qs.sort_by = options.sortBy
 
-  qs = this._authenticateQueryString(qs, options)
+  try {
+    qs = this._authenticateQueryString(qs, options)
+  } catch (err) {
+    return setTimeout(function () { cb(err) })
+  }
 
   return Request.get({
     method: 'GET',
@@ -190,7 +203,11 @@ SmartSurveyClient.prototype.getResponse = function (surveyId, responseId, option
   options = options || {}
   var qs = {}
 
-  qs = this._authenticateQueryString(qs, options)
+  try {
+    qs = this._authenticateQueryString(qs, options)
+  } catch (err) {
+    return setTimeout(function () { cb(err) })
+  }
 
   return Request.get({
     method: 'GET',
