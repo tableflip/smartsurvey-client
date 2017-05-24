@@ -21,5 +21,13 @@
   },
   "devDependencies": {
     "standard": "^9.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tableflip/smartsurvey-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tableflip/smartsurvey-client/issues"
+  },
+  "homepage": "https://github.com/tableflip/smartsurvey-client#readme"
 }
