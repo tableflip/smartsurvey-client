@@ -133,3 +133,7 @@ getAll(getPageOfSurveys, { pageSize: 10, onPage: onPage }, function (err, result
   console.log(result.data) // All surveys
 })
 ```
+
+----
+
+A [(╯°□°）╯︵TABLEFLIP](https://tableflip.io) side project.
