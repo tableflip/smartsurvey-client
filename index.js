@@ -226,6 +226,46 @@ SmartSurveyClient.prototype.getResponse = function (surveyId, responseId, option
 }
 
 /**
+* Fetch details of a survey folder
+* @param {number} folderId ID of the folder to fetch
+* @param {Object} [options]
+* @param {string} [options.apiToken] API Token
+* @param {string} [options.apiTokenSecret] API Token Secret
+* @param {SmartSurveyClient~requestCallback} cb
+*/
+
+SmartSurveyClient.prototype.getFolder = function (folderId, options, cb) {
+  if (!cb) {
+    cb = options
+    options = {}
+  }
+
+  options = options || {}
+  var qs = {}
+
+  try {
+    qs = this._authenticateQueryString(qs, options)
+  } catch (err) {
+    return setTimeout(function () { cb(err) })
+  }
+
+  return Request.get({
+    method: 'GET',
+    url: this._baseUrl() + '/surveyfolders/' + encodeURIComponent(folderId) + '/detailed',
+    qs: qs,
+    json: true
+  }, function (err, res, body) {
+    if (err) return cb(err)
+
+    if (res.statusCode !== 200) {
+      return cb(new RequestError('Failed to get folder', res, body))
+    }
+
+    cb(null, { data: body, meta: ResponseMeta.parse(res), response: res })
+  })
+}
+
+/**
  * @callback SmartSurveyClient~requestCallback
  * @param {Error} err
  * @param {Object} result
