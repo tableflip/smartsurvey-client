@@ -102,6 +102,15 @@ https://docs.smartsurvey.io/v1/reference#get-a-response
 
 Fetch a single response.
 
+### `getFolder(folderId, [options,] cb)`
+
+https://docs.smartsurvey.io/v1/reference#get-a-response
+
+Fetch a details on a folder (a way that surveys are collected).
+
+https://docs.smartsurvey.io/v1/reference#surveyfoldersfolder_iddetailed
+
+
 ## Utility
 
 ### `getAll(get, [options,] cb)`
